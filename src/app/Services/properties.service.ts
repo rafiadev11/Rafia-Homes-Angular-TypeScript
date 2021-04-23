@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Properties } from '../Interfaces/properties';
-
-import axios from 'axios';
 import { PropertyDetails } from '../Interfaces/propertyDetails';
+import axios from 'axios';
 
 @Injectable({
   providedIn: 'root',

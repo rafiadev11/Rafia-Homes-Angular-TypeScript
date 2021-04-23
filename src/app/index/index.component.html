@@ -1,8 +1,8 @@
 <div class="position-relative overflow-hidden p-3 p-md-5 text-center"
-     style="background: url(https://www.businessload.com/wp-content/uploads/2018/02/How-to-Start-Your-Own-Real-Estate-Company.jpg) no-repeat center; background-size: cover">
-  <div class="col-md-7 p-lg-5 mx-auto my-5">
-    <h1 class="display-3 font-weight-normal"><strong>Your Dream Home</strong></h1>
-    <h2 class="display-6 font-weight-normal"><strong>A Few Clicks Away</strong></h2>
+     style="background: url(https://res.cloudinary.com/bullard-com/image/upload/b_rgb:000000,f_auto,o_60,q_auto/v1619215642/How-to-Start-Your-Own-Real-Estate-Company_rqwled.jpg) no-repeat center; background-size: cover">
+  <div class="col-md-7 p-lg-5 mx-auto my-5 text-white">
+    <h1 class="display-3"><strong>Your Dream Home</strong></h1>
+    <h2 class="display-6"><strong>A Few Clicks Away</strong></h2>
     <div class="bg-dark p-4">
       <div class="row g-3">
         <div class="col-5">
@@ -73,7 +73,7 @@
           <div class="mt-2">
             <small *ngIf="city.value && state.value">
               Location Detected: <strong>{{city.value}}, {{state.value}}</strong>.
-              Click the search button to display properties in your area </small>
+              Click the "Search" button to display properties in your area </small>
           </div>
         </div>
       </div>
@@ -91,7 +91,7 @@
           <div class="col-lg-4 mt-3" *ngFor="let property of props">
             <div [id]="property.property_id" class="card" draggable="true">
               <img [src]="property.thumbnail" class="card-img-top" style="height: 150px">
-              <div class="card-body">
+              <div class="card-body cursorMove">
                 <h5 class="card-title">{{property.price | currency}}</h5>
                 <p class="card-text">{{property.street_address}}</p>
                 <a [routerLink]="['/property', property.property_id]" class="btn btn-dark btn-sm">Learn More</a>
@@ -111,18 +111,7 @@
           <div class="mb-3">
             <small><em><i class="bi-arrows-move"></i> Drag and drop a property to your watch list</em></small>
           </div>
-          <div *ngIf="watchList !== null">
-            <div *ngFor="let house of watchList" class="row alert alert-dark">
-              <div class="col-4">
-                <img [src]="house.thumbnail" style="width: 100px!important;">
-              </div>
-              <div class="col-8">
-                <div><em>{{house.street_address}}</em></div>
-                <a [routerLink]="['/property', house.property_id]" class="badge text-dark"><i class="bi-info-circle"></i> Learn More</a>
-                <a (click)="removeFromWatchList(house.property_id)" class="badge text-danger"><i class="bi-trash"></i> Remove</a>
-              </div>
-            </div>
-          </div>
+          <app-watch-list [watchList]="watchList"></app-watch-list>
         </div>
       </div>
     </div>

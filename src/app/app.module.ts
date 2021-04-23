@@ -7,9 +7,10 @@ import { IndexComponent } from './index/index.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PropertyComponent } from './property/property.component';
+import { WatchListComponent } from './watch-list/watch-list.component';
 
 @NgModule({
-  declarations: [AppComponent, IndexComponent, PageNotFoundComponent, PropertyComponent],
+  declarations: [AppComponent, IndexComponent, PageNotFoundComponent, PropertyComponent, WatchListComponent],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],

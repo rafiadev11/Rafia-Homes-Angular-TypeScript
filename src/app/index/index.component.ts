@@ -4,6 +4,7 @@ import { PropertiesService } from '../Services/properties.service';
 import { Properties } from '../Interfaces/properties';
 import axios from 'axios';
 import { environment } from '../../environments/environment';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-index',
@@ -17,15 +18,15 @@ export class IndexComponent implements OnInit, AfterViewInit {
   sourceId;
   watchList: Properties[] = [];
 
+  city = new FormControl('');
+  state = new FormControl('');
+
   constructor(private propertiesService: PropertiesService) {
     this.props = this.propertiesService.fetchPropertiesFromLocalStorage();
     if (localStorage.getItem('RafiaHomesWatchList') !== null) {
       this.watchList = JSON.parse(localStorage.getItem('RafiaHomesWatchList'));
     }
   }
-
-  city = new FormControl('');
-  state = new FormControl('');
 
   ngOnInit(): void {}
 
@@ -49,12 +50,14 @@ export class IndexComponent implements OnInit, AfterViewInit {
           'RafiaHomesWatchList',
           JSON.stringify(this.watchList)
         );
+        const housePrice = new CurrencyPipe('en-US').transform(house.price);
         this.dropArea.innerHTML += `
 <div class="row alert alert-dark">
   <div class="col-4">
     <img src="${house.thumbnail}" style="width: 100px!important;">
   </div>
   <div class="col-8">
+    <div><strong>${housePrice}</strong></div>
     <div><em>${house.street_address}</em></div>
 <a href="/property/${propertyId}" class="badge text-dark"><i class="bi-info-circle"></i> Learn More</a>
   </div>
@@ -116,13 +119,5 @@ export class IndexComponent implements OnInit, AfterViewInit {
 
   dragOverHandler(e): void {
     e.preventDefault();
-  }
-
-  public removeFromWatchList(id): void {
-    const indexNum = this.watchList.findIndex((item) => {
-      return item.property_id === id;
-    });
-    this.watchList.splice(indexNum, 1);
-    localStorage.setItem('RafiaHomesWatchList', JSON.stringify(this.watchList));
   }
 }
