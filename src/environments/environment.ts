@@ -7,7 +7,7 @@ export const environment = {
   rapidApiBaseURL: 'https://realtor.p.rapidapi.com/properties/v2',
   rapidApiKey: '',
   rapidApiHost: 'realtor.p.rapidapi.com',
-  gmapApiKey: 'AIzaSyBawgJWTcB4BvnbloKqjrHw0GGrOgrKE6w',
+  gmapApiKey: '',
 };
 
 /*
